@@ -1,13 +1,10 @@
 pipeline{
 
-	agent {   
-		docker {
-			image 'maven:openjdk:11-jdk'
-			args '-v /root/.m2:/root/.m2'
-			}
-
-		}
-
+	agent any
+	
+	tools {
+	       maven 'maven38'
+	}
     stages{
 
      stage('CodeBuild'){
