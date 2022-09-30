@@ -1,35 +1,32 @@
-pipeline{
+pipeline {
+  agent {
+    node {
+      label 'Node3'
+    }
 
-	agent any
-	
-	tools {
-	       maven 'maven38'
-	}
-    stages{
+  }
+  stages {
+    stage('CodeBuild') {
+      steps {
+        sh 'echo This is the code build stage'
+        sh 'mvn package'
+      }
+    }
 
-     stage('CodeBuild'){
+    stage('CodeTest') {
+      steps {
+        sh 'echo This is the code test stage'
+      }
+    }
 
-                steps{
-                        sh 'echo This is the code build stage'
-			sh 'mvn package'
-                        
-                        }
+    stage('CodePlay') {
+      steps {
+        echo 'The end'
+      }
+    }
 
-		}
-
-     stage('CodeTest'){
-
-                steps{
-                        sh 'echo This is the code test stage'
-
-                        }
-
-		}
-
-
-     
-}
-
-
-
+  }
+  tools {
+    maven 'maven38'
+  }
 }
