@@ -20,8 +20,19 @@ pipeline {
     }
 
     stage('CodePlay') {
-      steps {
-        echo 'The end'
+      parallel {
+        stage('CodePlay') {
+          steps {
+            echo 'The end'
+          }
+        }
+
+        stage('codeslay') {
+          steps {
+            echo 'Thank you'
+          }
+        }
+
       }
     }
 
